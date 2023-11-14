@@ -1,5 +1,5 @@
 from core.interfaces.validar_cartao import CartaoValidatorInterface
-from core.models.cartaoCredito import CartaoCredito
+from core.models.cartao_credito import CartaoCredito
 
 
 class ValidarCartaoUseCase:
