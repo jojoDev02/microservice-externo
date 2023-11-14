@@ -1,5 +1,5 @@
 
-from core.models.cartaoCredito import CartaoCredito
+from core.models.cartao_credito import CartaoCredito
 from core.use_cases.validar_cartao import ValidarCartaoUseCase
 
 
