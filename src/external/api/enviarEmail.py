@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from core.controllers.envia_email_controller import EnviarEmailController
+from core.controllers.enviar_email_controller import EnviarEmailController
 from core.use_cases.enviar_email import EnviarEmailUseCase
 from external.email.enviar_email import EmailService
 
