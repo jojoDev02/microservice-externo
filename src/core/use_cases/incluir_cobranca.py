@@ -1,4 +1,4 @@
-from core.interfaces.incluir_cobranca import FilaCobrancaInterface
+from core.interfaces.fila_cobranca import FilaCobrancaInterface
 from core.models.cobranca import Cobranca
 
 #implementa o caso de uso de inclusao na fila de cobranças

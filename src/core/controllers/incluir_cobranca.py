@@ -5,7 +5,7 @@ from core.models.cobranca import Cobranca
 from core.use_cases.incluir_cobranca import IncluirCobrancaNaFilaUseCase
 
 
-class CobrancaController:
+class IncluirCobrancaController:
 
     def __init__(self, use_case: IncluirCobrancaNaFilaUseCase) -> None:
         self.__use_case = use_case
@@ -22,3 +22,5 @@ class CobrancaController:
             "codigo" : "422",
             "mensagem" : "Dados Inválidos!"
             }, 422
+        
+ 

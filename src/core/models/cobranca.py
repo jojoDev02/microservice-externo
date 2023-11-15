@@ -26,8 +26,6 @@ class Cobranca:
         self.horaFinalizacao = str(datetime.datetime.now())
 
     def set_status(self, novo_status: StatusCobranca):
-        if novo_status not in StatusCobranca:
-            raise ValueError("Status Inválido.")
         self.status = novo_status
     
     def get_status(self):

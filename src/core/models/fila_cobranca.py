@@ -4,23 +4,21 @@ from core.models.cobranca import Cobranca
 class FilaCobranca:
     
     def __init__(self) -> None:
-        self.fila = Queue()
+        self.fila = list()
 
     def get_cobranca(self, cobranca_id: int) -> Cobranca:
-        for cobranca in self.fila.queue:
+        for cobranca in self.fila:
             if cobranca.id == cobranca_id:
                 return cobranca 
         return None
 
     def add_cobranca(self, cobranca: Cobranca) -> None:
-        self.fila.put(cobranca)
-        self._get_fila()
+        self.fila.append(cobranca)
         
 
     def retira_cobranca(self) -> Cobranca:
-       return self.fila.get()
+       return self.fila.pop(0)
     
-    #apagar depois
-    def _get_fila(self):
-        for cobranca in self.fila.queue:
-            print(cobranca.to_dict())
+    def get_all_conbrancas(self):
+        return self.fila
+
