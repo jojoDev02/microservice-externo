@@ -10,7 +10,7 @@ class EnviarEmailUseCase:
     def execute(self, email: Email) -> None:
         # Lógica de negócios para o envio de e-mail
        
-            enviado = self.email_service.enviar_email(email.destinatario, email.assunto, email.mensagem)
+            enviado = self.email_service.enviar_email(email)
 
             return enviado
         

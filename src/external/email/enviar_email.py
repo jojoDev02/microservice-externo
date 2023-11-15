@@ -1,14 +1,43 @@
-import random
-from flask import Flask
-from flask_mail import Mail, Message
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import os
+import config
+import smtplib
 from core.interfaces.enivar_email import EmailServiceInterface
+from core.models.email import Email
 
 # Implementacao concreta do envio de email
 class EmailService(EmailServiceInterface):
-    # def __init__(self, app: Flask) -> None:
-    #     self.mail = Mail(app)
+    def __init__(self) -> None:
+        self.host = config.MAIL_SERVER #os.getenv("EMAIL_HOST")
+        self.port = config.MAIL_PORT #os.getenv("EMAIL_PORT")
+        self.username = config.MAIL_USERNAME#os.getenv("EMAIL_USERNAME")
+        self.password = config.MAIL_PASSWORD#os.getenv("EMAIL_PASSWORD")
 
-    def enviar_email(self, destinatario: str, assunto: str, mensagem: str) -> None:
+    def enviar_email(self, email: Email) -> bool:
+        # Cria uma conexão com o servidor SMTP
+        servidor = smtplib.SMTP(self.host, self.port)
 
-        return random.choice([True, False])
+        # Autentica-se no servidor
+        servidor.starttls()
+        servidor.login(self.username, self.password)
+
+        # Cria a mensagem de e-mail
+        mensagem = MIMEMultipart()
+        mensagem['From'] = 'jordanafcavalcante@gmail.com'
+        mensagem['To'] = email.destinatario
+        mensagem['Subject'] = email.assunto
+
+        body = MIMEText(email.mensagem, 'plain')
+        mensagem.attach(body)
+
+        # Envia a mensagem de e-mail
+        servidor.send_message(mensagem)
+
+        # Fecha a conexão com o servidor
+        servidor.quit()
+
+        return True
+    
+
     
