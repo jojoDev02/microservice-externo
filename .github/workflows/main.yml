@@ -25,7 +25,7 @@ jobs:
 
       - name: Run tests
         run: |
-          python3 -m unittest /test
+          python3 -m unittest \test
         working-directory: ${{ github.workspace }}
         
   sonarcloud:
