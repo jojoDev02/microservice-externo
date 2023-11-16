@@ -1,28 +1,26 @@
 import unittest, os , sys
-from unittest.mock import Mock, patch
-from src.core.models.email import Email
+from unittest.mock import  patch
+
+
 from src.core.use_cases.enviar_email import EnviarEmailUseCase
 
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, project_root)
 
 class EmailTeste(unittest.TestCase):
-    
-    @patch('core.use_cases.enviar_email.EmailServiceInterface')
-    def test_enviar(self, mock_enviar_email_interface):
-        email = Mock(Email)
 
-        mock_enviar_email_interface().enviar_email.return_value = True
+    @patch('src.core.models.email.Email')
+    @patch('src.core.use_cases.enviar_email.EmailServiceInterface')
+    def test_enviar(self,mock_email,  mock_enviar_email_interface):
+        
+
+        mock_enviar_email_interface.enviar_email.return_value = True
 
         use_case = EnviarEmailUseCase()
 
-        use_case.execute(email)
+        use_case.execute(mock_email)
 
-        mock_enviar_email_interface().enviar_email.assert_called_once()
+        mock_enviar_email_interface.enviar_email.assert_called_once()
 
-    
-
-if __name__ == "__main__":
-    unittest.main()
+    if __name__ == "__main__":
+        unittest.main()
 
 

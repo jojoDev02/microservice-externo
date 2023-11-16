@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 from core.use_cases.processar_cobrancas import ProcessarCobrancasUseCase
-from src.core.use_cases.obter_cobranca import ObterCobrancaUseCase  # Substitua 'seu_modulo' pelo nome do módulo que contém o código fornecido
+from src.core.use_cases.obter_cobranca import ObterCobrancaUseCase
 from core.models.cobranca import Cobranca
 
 class TestObterCobrancaUseCase(unittest.TestCase):
