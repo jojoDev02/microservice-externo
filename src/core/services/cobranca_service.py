@@ -23,13 +23,15 @@ class FilaCobrancaService(FilaCobrancaInterface):
                     self.fila.retira_cobranca()
                     cobranca.set_status(StatusCobranca.PAGA.name)
                     cobrancas_pagas.append(cobranca)
-
                 except:
                     cobranca.set_status(StatusCobranca.FALHA.name)
-                    self.fila.add_cobranca(cobranca)
-                    
+                    self.fila.add_cobranca(cobranca)        
         return cobrancas_pagas
 
+    def obter_cobranca(self, cobranca_id):
+        return self.fila.get_cobranca(cobranca_id)
+      
+    
 
 
 #posso fazer outra manipulacoes de dados aqui 

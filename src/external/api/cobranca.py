@@ -1,10 +1,12 @@
 from flask import Blueprint, request
 
 from core.controllers.incluir_cobranca import IncluirCobrancaController
+from core.controllers.obter_cobranca import ObterCobrancaController
 from core.controllers.processar_cobranca_controller import ProcessarCobrancasController
 from core.models.fila_cobranca import FilaCobranca
 from core.services.cobranca_service import FilaCobrancaService
 from core.use_cases.incluir_cobranca import IncluirCobrancaNaFilaUseCase
+from core.use_cases.obter_cobranca import ObterCobrancaUseCase
 from core.use_cases.processar_cobrancas import ProcessarCobrancasUseCase
 
 cobranca_bp = Blueprint('cobranca', __name__)
@@ -18,6 +20,9 @@ cobranca_controller = IncluirCobrancaController(incluir_cobranca_usecase)
 
 processa_cobrancas_usecase = ProcessarCobrancasUseCase(fila_cobranca_service)
 processar_cobranca_controller = ProcessarCobrancasController(processa_cobrancas_usecase)
+
+obter_cobranca_usecase = ObterCobrancaUseCase(fila_cobranca_service)
+obter_cobranca_controller = ObterCobrancaController(obter_cobranca_usecase)
 
 @cobranca_bp.route('/cobranca', methods=['POST'])
 def realizar_cobranca():
@@ -33,9 +38,12 @@ def incluir_cobranca():
 
     return resultado, status_code
 
-@cobranca_bp.route('/cobranca/<idCobranca>')
+@cobranca_bp.route('/cobranca/<cobranca_id>', methods = ['GET'])
 def get_cobranca(cobranca_id):
-    pass
+
+    resultado, status_code = obter_cobranca_controller.obter_cobranca(cobranca_id)
+    
+    return resultado, status_code
 
 @cobranca_bp.route('/processaCobrancasEmFila', methods =['POST'])
 def processa_cobrancas():

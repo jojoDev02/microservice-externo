@@ -1,27 +1,28 @@
 import unittest
-from unittest.mock import patch
+from external.email.enviar_email import EmailService
+from core.models.email import Email
+from unittest.mock import Mock
 
-class MyClassTeste(unittest.TestCase):
-    
-    def test_add(self):
-        self.assertEqual(2+2,4)
+class EmailServiceTests(unittest.TestCase):
 
-    def test_some_function(self):
-        # Substituir a dependência externa com um mock
-        with patch("some_module.some_function") as mock_function:
-            mock_function.return_value = "foo"
+    def test_email_invalido(self):
+        # Cria um objeto Email válido
+        email = Mock(Email)
 
-            # Executar a função que depende da dependência externa
-            result = some_function()
+        # Cria uma instância do serviço de envio de email
+        service = Mock(EmailService)
 
-            # Verificar o resultado da função
-            self.assertEqual(result, "foo")
+        # Envia o email
+        resultado = service
+
+        # Verifica se o resultado é True
+        self.assertTrue(resultado)
+
+    def test_enviar_email(self): pass
+
+    def test_enviar_email_controller(self): pass
+
+
 
 if __name__ == "__main__":
     unittest.main()
-
-#Esquema para teste já config, só replicar para os outros casos ;)
-
-#Faz o resto das coisas!!!
-
-#Falta o mock

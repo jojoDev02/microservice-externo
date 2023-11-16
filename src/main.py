@@ -3,6 +3,7 @@ from flask import Flask, request
 from external.api.enviarEmail import email_bp
 from external.api.cobranca import cobranca_bp
 from external.api.cartao import cartao_bp
+
 app = Flask(__name__)
 
 app.register_blueprint(email_bp)
