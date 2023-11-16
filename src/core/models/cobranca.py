@@ -23,7 +23,7 @@ class Cobranca:
         self.ciclista = ciclista
 
     def set_horario_finalizacao(self):
-        self.horaFinalizacao = str(datetime.datetime.now())
+        self.hora_finalizacao = str(datetime.datetime.now())
 
     def set_status(self, novo_status: StatusCobranca):
         self.status = novo_status
