@@ -3,8 +3,10 @@ from flask import Flask, request
 from external.api.enviarEmail import email_bp
 from external.api.cobranca import cobranca_bp
 from external.api.cartao import cartao_bp
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 
 app.register_blueprint(email_bp)
 app.register_blueprint(cobranca_bp)
