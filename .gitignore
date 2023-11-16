@@ -161,3 +161,4 @@ cython_debug/
 
 #my_archives
 doc_commit.txt
+config.py
