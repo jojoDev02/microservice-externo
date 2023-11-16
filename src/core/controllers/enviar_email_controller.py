@@ -12,7 +12,7 @@ class EnviarEmailController:
             
             try: 
                 validate_email(destinatario)
-            except:
+            except Exception:
                 return {
                     "codigo" : "422",
                     "mensagem" : "E-mail com formato inválido"

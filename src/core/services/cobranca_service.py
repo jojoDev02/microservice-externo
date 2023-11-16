@@ -8,7 +8,7 @@ class FilaCobrancaService(FilaCobrancaInterface):
     def __init__(self, fila: FilaCobranca) -> None:
         self.fila = fila
 
-    def incluir(self, cobranca: Cobranca) -> None:
+    def incluir(self, cobranca: Cobranca) -> bool:
         if cobranca.status != "PAGA" :
             self.fila.add_cobranca(cobranca)
             return True

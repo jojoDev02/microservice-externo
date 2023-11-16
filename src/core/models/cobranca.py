@@ -18,7 +18,7 @@ class Cobranca:
         self.id = uuid4()
         self.status = StatusCobranca.PENDENTE.name
         self.horaSolicitacao = str(datetime.datetime.now())
-        self.horaFinalizacao = None
+        self.horaFinalizacao = str(datetime.datetime.now())
         self.valor = valor 
         self.ciclista = ciclista
 

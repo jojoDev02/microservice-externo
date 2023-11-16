@@ -4,7 +4,7 @@ from core.models.cobranca import Cobranca
 class FilaCobrancaInterface(ABC):
 
     @abstractmethod
-    def incluir(self, cobranca: Cobranca) -> None: pass
+    def incluir(self, cobranca: Cobranca) -> bool: pass
     
     @abstractmethod
     def processar_cobrancas(self) -> list: pass
