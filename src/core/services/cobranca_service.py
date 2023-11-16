@@ -23,7 +23,7 @@ class FilaCobrancaService(FilaCobrancaInterface):
                     self.fila.retira_cobranca()
                     cobranca.set_status(StatusCobranca.PAGA.name)
                     cobrancas_pagas.append(cobranca)
-                except:
+                except Exception:
                     cobranca.set_status(StatusCobranca.FALHA.name)
                     self.fila.add_cobranca(cobranca)        
         return cobrancas_pagas
