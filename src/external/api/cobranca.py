@@ -1,8 +1,8 @@
 from flask import Blueprint, request
 
-from core.controllers.incluir_cobranca import IncluirCobrancaController
-from core.controllers.obter_cobranca import ObterCobrancaController
-from core.controllers.processar_cobranca_controller import ProcessarCobrancasController
+from controllers.incluir_cobranca import IncluirCobrancaController
+from controllers.obter_cobranca import ObterCobrancaController
+from controllers.processar_cobranca_controller import ProcessarCobrancasController
 from core.models.fila_cobranca import FilaCobranca
 from core.services.cobranca_service import FilaCobrancaService
 from core.use_cases.incluir_cobranca import IncluirCobrancaNaFilaUseCase

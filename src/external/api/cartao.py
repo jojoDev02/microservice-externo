@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 
-from core.controllers.validar_cartao_controller import ValidarCartaoController
+from controllers.validar_cartao_controller import ValidarCartaoController
 from core.use_cases.validar_cartao import ValidarCartaoUseCase
 from external.credora.validar_cartao import CartaoValidator
 
