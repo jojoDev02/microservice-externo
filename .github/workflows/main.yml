@@ -1,0 +1,80 @@
+name: ci/cd
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+
+      - name: Install project dependencies
+        run: |
+          pip3 install --no-cache-dir -r requirements.txt
+        working-directory: ${{ github.workspace }}
+
+      - name: Run tests
+        run: |
+          pytest  
+        working-directory: ${{ github.workspace }}
+        
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    needs: build_and_test
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  # deploy:
+  #   env:
+  #     PROJECT_ID: vadebike-es2 # TODO: update Google Cloud project id
+  #     SERVICE: va-de-bike-web # TODO: update Cloud Run service name
+  #     REGION: us-central1 # TODO: update Cloud Run service region
+   
+      
+  #   # Add 'id-token' with the intended permissions for workload identity federation
+  #   permissions:
+  #     contents: 'read'
+  #     id-token: 'write'
+  #   name: Deploy to Cloud Run from Source
+  #   runs-on: ubuntu-latest
+  #   needs: sonarcloud
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+
+  #     # NOTE: Alternative option - authentication via credentials json
+  #     - name: Google Auth
+  #       id: auth
+  #       uses: 'google-github-actions/auth@v0'
+  #       with:
+  #         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+  #     - name: Deploy to Cloud Run
+  #       id: deploy
+  #       uses: google-github-actions/deploy-cloudrun@v0
+  #       with:
+  #         service: ${{ env.SERVICE }}
+  #         region: ${{ env.REGION }}
+  #         # NOTE: If required, update to the appropriate source folder
+  #         source: ./
+
+  #     # If required, use the Cloud Run url output in later steps
+  #     - name: Show Output
+  #       run: echo ${{ steps.deploy.outputs.url }}
