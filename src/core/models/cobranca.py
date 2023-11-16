@@ -17,8 +17,8 @@ class Cobranca:
     def __init__(self, valor, ciclista) -> None:
         self.id = uuid4()
         self.status = StatusCobranca.PENDENTE.name
-        self.horaSolicitacao = str(datetime.datetime.now())
-        self.horaFinalizacao = str(datetime.datetime.now())
+        self.hora_solicitacao = str(datetime.datetime.now())
+        self.hora_finalizacao = None
         self.valor = valor 
         self.ciclista = ciclista
 
