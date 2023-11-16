@@ -20,3 +20,7 @@ def enviar_email():
     resultado, status_code = enviar_email_controller.enviar_email(destinatario, assunto, mensagem)
 
     return resultado, status_code
+
+@email_bp.route('/', methods=['GET'])
+def index():
+    return 'WORKING'
