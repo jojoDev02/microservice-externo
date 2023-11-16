@@ -1,39 +1,55 @@
 import unittest
 from unittest.mock import Mock
-from src.core.use_cases.incluir_cobranca import IncluirCobrancaNaFilaUseCase  # Substitua 'seu_modulo' pelo nome do módulo que contém o código fornecido
+from core.use_cases.processar_cobrancas import ProcessarCobrancasUseCase
+from src.core.use_cases.obter_cobranca import ObterCobrancaUseCase  # Substitua 'seu_modulo' pelo nome do módulo que contém o código fornecido
 from core.models.cobranca import Cobranca
 
-class TestIncluirCobrancaNaFilaUseCase(unittest.TestCase):
+class TestObterCobrancaUseCase(unittest.TestCase):
 
-    def test_execute_inclusao_sucesso(self):
-   
+    def test_execute_sucesso(self):
+       
         fila_service_mock = Mock()
-        incluir_cobranca_use_case = IncluirCobrancaNaFilaUseCase(fila_service_mock)
-        cobranca = Cobranca()  # Pode ajustar conforme necessário
+        obter_cobranca_use_case = ObterCobrancaUseCase(fila_service_mock)
+        cobranca_id = 1  
+        cobranca_retorno = Cobranca(id=cobranca_id) 
 
-  
-        fila_service_mock.incluir.return_value = True
-        result = incluir_cobranca_use_case.execute(cobranca)
+ 
+        fila_service_mock.obter_cobranca.return_value = cobranca_retorno
+        result = obter_cobranca_use_case.execute(cobranca_id)
 
-    
-        fila_service_mock.incluir.assert_called_once_with(cobranca)
-        cobranca.set_horario_finalizacao.assert_called_once()
-        self.assertTrue(result)
+       
+        fila_service_mock.obter_cobranca.assert_called_once_with(cobranca_id)
+        self.assertEqual(result, cobranca_retorno)
 
-    def test_execute_inclusao_falha(self):
-    
+    def test_execute_cobranca_nao_encontrada(self):
+        
         fila_service_mock = Mock()
-        incluir_cobranca_use_case = IncluirCobrancaNaFilaUseCase(fila_service_mock)
-        cobranca = Cobranca()  # Pode ajustar conforme necessário
+        obter_cobranca_use_case = ObterCobrancaUseCase(fila_service_mock)
+        cobranca_id = 2 
 
-      
-        fila_service_mock.incluir.return_value = False
-        result = incluir_cobranca_use_case.execute(cobranca)
+       
+        fila_service_mock.obter_cobranca.return_value = None
+        result = obter_cobranca_use_case.execute(cobranca_id)
 
+       
+        fila_service_mock.obter_cobranca.assert_called_once_with(cobranca_id)
+        self.assertIsNone(result)
 
-        fila_service_mock.incluir.assert_called_once_with(cobranca)
-        cobranca.set_horario_finalizacao.assert_not_called()
-        self.assertFalse(result)
+    class TestProcessarCobrancasUseCase(unittest.TestCase):
+
+        def test_execute(self):
+            # Arrange
+            fila_cobranca_mock = Mock()
+            processar_cobrancas_use_case = ProcessarCobrancasUseCase(fila_cobranca_mock)
+            cobrancas_processadas_mock = ['cobranca1', 'cobranca2']  # Pode ajustar conforme necessário
+
+            # Act
+            fila_cobranca_mock.processar_cobrancas.return_value = cobrancas_processadas_mock
+            result = processar_cobrancas_use_case.execute()
+
+            # Assert
+            fila_cobranca_mock.processar_cobrancas.assert_called_once()
+            self.assertEqual(result, cobrancas_processadas_mock)
 
 if __name__ == '__main__':
     unittest.main()
