@@ -20,8 +20,7 @@ class FilaCobrancaService(FilaCobrancaInterface):
         for cobranca in self.fila.get_all_conbrancas():
                 try:
                     #aqui chama metodo que realiza cobranca (ainda vou implementar)
-                    self.fila.retira_cobranca()
-                    cobranca.set_status(StatusCobranca.PAGA.name)
+                    cobranca.marcar_como_paga()
                     cobrancas_pagas.append(cobranca)
                 except Exception:
                     cobranca.set_status(StatusCobranca.FALHA.name)
