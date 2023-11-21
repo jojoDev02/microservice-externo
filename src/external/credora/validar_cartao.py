@@ -10,7 +10,7 @@ class CartaoValidator(CartaoValidatorInterface):
     def validar(self, cartao):
 
         # validar o número do cartão
-        if not self.validar_numero_cartao(cartao.numero_cartao):
+        if not self.validar_numero_cartao(cartao.numero):
             return False
 
         # validar o CVV
@@ -24,17 +24,17 @@ class CartaoValidator(CartaoValidatorInterface):
         return True
 
     # Método para validar o número do cartão
-    def validar_numero_cartao(self, numero_cartao):
+    def validar_numero_cartao(self, numero):
         # verificar se o número do cartão tem o tamanho correto
-        if len(numero_cartao) != 16:
+        if len(numero) != 16:
             return False
 
         # verificar se o número do cartão começa com um dígito correto
-        if numero_cartao[0] not in ['4', '5', '6', '3']:
+        if numero[0] not in ['4', '5', '6', '3']:
             return False
 
         # verificar se o número do cartão é válido usando o algoritmo de Luhn
-        return self.validar_luhn(numero_cartao)
+        return self.validar_luhn(numero)
 
     # Método para validar o CVV
     def validar_cvv(self, cvv):

@@ -4,7 +4,7 @@ from controllers.incluir_cobranca import IncluirCobrancaController
 from controllers.obter_cobranca import ObterCobrancaController
 from controllers.processar_cobranca_controller import ProcessarCobrancasController
 from core.models.fila_cobranca import FilaCobranca
-from core.services.cobranca_service import FilaCobrancaService
+from core.services.fila_cobranca_service import FilaCobrancaService
 from core.use_cases.incluir_cobranca import IncluirCobrancaNaFilaUseCase
 from core.use_cases.obter_cobranca import ObterCobrancaUseCase
 from core.use_cases.processar_cobrancas import ProcessarCobrancasUseCase

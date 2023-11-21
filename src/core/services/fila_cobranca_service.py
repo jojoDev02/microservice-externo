@@ -1,3 +1,4 @@
+import uuid
 from core.interfaces.fila_cobranca import FilaCobrancaInterface
 from core.models.cobranca import Cobranca, StatusCobranca
 from core.models.fila_cobranca import FilaCobranca
@@ -17,20 +18,15 @@ class FilaCobrancaService(FilaCobrancaInterface):
 
         cobrancas_pagas = []
 
-        for cobranca in self.fila.get_all_conbrancas():
-                try:
-                    #aqui chama metodo que realiza cobranca (ainda vou implementar)
-                    cobranca.marcar_como_paga()
+        for cobranca in self.fila.get_all_cobrancas():
+               
+                if cobranca.marcar_como_paga():
                     cobrancas_pagas.append(cobranca)
-                except Exception:
-                    cobranca.set_status(StatusCobranca.FALHA.name)
-                    self.fila.add_cobranca(cobranca)        
+           
         return cobrancas_pagas
 
     def obter_cobranca(self, cobranca_id):
         return self.fila.get_cobranca(cobranca_id)
-      
+            
     
-
-
-#posso fazer outra manipulacoes de dados aqui 
+      

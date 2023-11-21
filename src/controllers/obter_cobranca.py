@@ -14,7 +14,7 @@ class ObterCobrancaController:
     def obter_cobranca(self, cobranca_id):
         cobranca = self.__use_case.execute(cobranca_id)
 
-        if cobranca is not None:
+        if cobranca:
           return cobranca.to_dict(), 200
         else:
             return {
