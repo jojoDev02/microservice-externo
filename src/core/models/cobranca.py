@@ -25,7 +25,6 @@ class Cobranca:
    
     def set_horario_finalizacao(self):
         self.hora_finalizacao = str(datetime.datetime.now())
-
    
     def set_status(self, novo_status: StatusCobranca):
         self.status = novo_status
@@ -34,10 +33,6 @@ class Cobranca:
         self.set_status(StatusCobranca.PAGA.name)
         self.set_horario_finalizacao()
         return True
-        # logica de paga mento
-        #atuliza status e retira da fila
-        # retiar da fila
-        #mudar horario de finalizacao
 
     def get_status(self):
         return self.status

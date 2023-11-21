@@ -4,10 +4,3 @@ class CartaoCredito:
         self.numero = numero
         self.validade = validade
         self.cvv = cvv
-
-    
-    #   responses:
-    #     "200":
-    #       description: Dados atualizados
-    #     "422":
-    #       description: Dados Inválidos
