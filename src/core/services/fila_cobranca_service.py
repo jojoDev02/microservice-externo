@@ -1,6 +1,6 @@
 import uuid
 from core.interfaces.fila_cobranca import FilaCobrancaInterface
-from core.models.cobranca import Cobranca, StatusCobranca
+from core.models.cobranca import Cobranca
 from core.models.fila_cobranca import FilaCobranca
 
 # implementa a funcionalidade de acesso a dados da fila de cobrança
@@ -26,7 +26,8 @@ class FilaCobrancaService(FilaCobrancaInterface):
         return cobrancas_pagas
 
     def obter_cobranca(self, cobranca_id):
-        return self.fila.get_cobranca(cobranca_id)
+        cobranca = self.fila.get_cobranca(cobranca_id)
+        return cobranca
             
     
       

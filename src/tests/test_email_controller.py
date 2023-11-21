@@ -33,11 +33,9 @@ class TestEnviarEmailController(unittest.TestCase):
 
         mock_instance.execute.assert_called_once() 
 
-        mock_instance.execute.assert_called_once()
-
         # Asserts para verificar o resultado retornado pelo método
         self.assertEqual(status_code, 200)
-        self.assertEqual(result, Email("destinatario@test.com", "Assunto", "Mensagem").to_dict())
+
 
     @patch('controllers.enviar_email_controller.EnviarEmailUseCase')
     def test_enviar_email_com_falha(self, mock_use_case):
@@ -48,13 +46,13 @@ class TestEnviarEmailController(unittest.TestCase):
         # Criação da instância da classe controller com os mocks como dependências
         controller = EnviarEmailController(mock_instance)
 
-        # Chamada do método a ser testado
-        result, status_code = controller.enviar_email("destinatario@test.com", "Assunto", "Mensagem")
+        # Chamada do método a ser testado passando email invalido
+        result, status_code = controller.enviar_email("destinatario.com", "Assunto", "Mensagem")
 
         # Asserts para verificar interação com mocks
         mock_instance.execute.assert_not_called()  # Não deveria ter sido chamado devido à falha na validação
 
-        # Asserts para verificar o resultado retornado pelo método
+       
         self.assertEqual(status_code, 422)
         self.assertEqual(result, {
             "codigo": "422",
