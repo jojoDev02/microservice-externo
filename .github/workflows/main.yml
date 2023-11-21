@@ -25,7 +25,7 @@ jobs:
 
       - name: Run tests
         run: |
-          python3 -m unittest \test
+          coverage run -m pytest
         working-directory: ${{ github.workspace }}
         
   sonarcloud:
