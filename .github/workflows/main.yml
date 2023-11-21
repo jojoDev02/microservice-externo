@@ -26,6 +26,7 @@ jobs:
       - name: Run tests
         run: |
           coverage run -m pytest
+          coverage xml -o coverage.xml
         working-directory: ${{ github.workspace }}
         
   sonarcloud:
