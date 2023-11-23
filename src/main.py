@@ -6,9 +6,9 @@ from external.api.cartao import cartao_bp
 from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
-# csrf = CSRFProtect(app)
 
-# app.config['SECRET_KEY'] = os.urandom(64).hex()
+app.config['WTF_CSRF_ENABLED'] = False
+
 
 app.register_blueprint(email_bp)
 app.register_blueprint(cobranca_bp)
