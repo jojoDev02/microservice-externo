@@ -30,15 +30,15 @@ class TestCobrancaModel(unittest.TestCase):
         self.assertEqual(cobranca.valor, valor)
         self.assertEqual(cobranca.ciclista, ciclista)
 
-    def test_set_horario_finalizacao(self):
+    def test_marcar_como_incluida(self):
         cobranca = Cobranca(100.0, 4)
-        cobranca.set_horario_finalizacao()
+        cobranca.marcar_como_incluida()
 
         self.assertIsNotNone(cobranca.hora_finalizacao)
 
-    def test_set_status(self):
+    def test_marcar_como_falha(self):
         cobranca = Cobranca(100.0, 4)
-        cobranca.set_status(StatusCobranca.FALHA.name)
+        cobranca.marcar_como_falha()
 
         self.assertEqual(cobranca.status, StatusCobranca.FALHA.name)
 
