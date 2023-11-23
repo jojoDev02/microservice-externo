@@ -44,7 +44,7 @@ class TestCobrancaModel(unittest.TestCase):
 
     def test_marcar_como_paga(self):
         cobranca = Cobranca(100.0, 4)
-        self.assertTrue(cobranca.marcar_como_paga())
+        cobranca.marcar_como_paga()
 
         self.assertEqual(cobranca.status, StatusCobranca.PAGA.name)
         self.assertIsNotNone(cobranca.hora_finalizacao)
@@ -53,7 +53,7 @@ class TestCobrancaModel(unittest.TestCase):
         cobranca = Cobranca(100.0, 4)
         self.assertEqual(cobranca.get_status(), StatusCobranca.PENDENTE.name)
 
-        cobranca.set_status(StatusCobranca.PAGA.name)
+        cobranca.marcar_como_paga()
         self.assertEqual(cobranca.get_status(), StatusCobranca.PAGA.name)
 
     def test_to_dict(self):
