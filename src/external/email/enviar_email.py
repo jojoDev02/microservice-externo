@@ -9,10 +9,10 @@ from core.models.email import Email
 # Implementacao concreta do envio de email
 class EmailService(EmailServiceInterface):
     def __init__(self) -> None:
-        self.host = config.MAIL_SERVER 
-        self.port = config.MAIL_PORT 
-        self.username = config.MAIL_USERNAME
-        self.password = config.MAIL_PASSWORD
+        self.host = os.environ.get("MAIL_SERVER") 
+        self.port = os.environ.get("MAIL_PORT") 
+        self.username = os.environ.get("MAIL_USERNAME") 
+        self.password = os.environ.get("MAIL_PASSWORD") 
 
     def enviar_email(self, email: Email) -> bool:
         # Cria uma conexão com o servidor SMTP

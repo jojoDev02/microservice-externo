@@ -2,12 +2,14 @@ import uuid
 from core.interfaces.fila_cobranca import FilaCobrancaInterface
 from core.models.cobranca import Cobranca
 from core.models.fila_cobranca import FilaCobranca
+from core.use_cases.realizar_cobranca import RealizarCobrancaUseCase
 
 # implementa a funcionalidade de acesso a dados da fila de cobrança
 class FilaCobrancaService(FilaCobrancaInterface):
 
     def __init__(self, fila: FilaCobranca) -> None:
         self.fila = fila
+
 
     def incluir(self, cobranca: Cobranca) -> bool:
         if cobranca.status != "PAGA" :
@@ -20,8 +22,8 @@ class FilaCobrancaService(FilaCobrancaInterface):
 
         for cobranca in self.fila.get_all_cobrancas():
                
-                if cobranca.marcar_como_paga():
-                    cobrancas_pagas.append(cobranca)
+                cobranca.marcar_como_paga()
+                cobrancas_pagas.append(cobranca)
            
         return cobrancas_pagas
 

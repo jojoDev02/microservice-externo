@@ -11,7 +11,6 @@ class IncluirCobrancaNaFilaUseCase:
     def execute(self, cobranca: Cobranca ) -> bool:
         incluiu = self.fila.incluir(cobranca)
         if incluiu:
-            cobranca.set_horario_finalizacao()
             return True
         
        

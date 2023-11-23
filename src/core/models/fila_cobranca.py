@@ -17,6 +17,8 @@ class FilaCobranca:
 
     def add_cobranca(self, cobranca: Cobranca) -> None:
         self.fila.append(cobranca)
+        cobranca.marcar_como_incluida()
+
 
     def retira_cobranca(self) -> Cobranca:
         if self.fila:

@@ -23,16 +23,24 @@ class Cobranca:
         self.ciclista = ciclista
 
    
-    def set_horario_finalizacao(self):
+    def __set_horario_finalizacao(self):
         self.hora_finalizacao = str(datetime.datetime.now())
    
-    def set_status(self, novo_status: StatusCobranca):
+    def __set_status(self, novo_status: StatusCobranca):
         self.status = novo_status
     
     def marcar_como_paga(self): 
-        self.set_status(StatusCobranca.PAGA.name)
-        self.set_horario_finalizacao()
-        return True
+        self.__set_status(StatusCobranca.PAGA.name)
+        self.__set_horario_finalizacao()
+    
+    
+    def marcar_como_falha(self): 
+        self.__set_status(StatusCobranca.FALHA.name)
+        self.__set_horario_finalizacao()
+
+    def marcar_como_incluida(self):
+        self.__set_horario_finalizacao()
+        
 
     def get_status(self):
         return self.status
