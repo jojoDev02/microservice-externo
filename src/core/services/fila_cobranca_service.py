@@ -23,7 +23,9 @@ class FilaCobrancaService(FilaCobrancaInterface):
         for cobranca in self.fila.get_all_cobrancas():
                
                 cobranca.marcar_como_paga()
+                self.fila.retira_cobranca()
                 cobrancas_pagas.append(cobranca)
+                
            
         return cobrancas_pagas
 
