@@ -22,9 +22,9 @@ class FilaCobranca:
 
     def retira_cobranca(self) -> Cobranca:
         if self.fila:
-            return self.fila.popleft()  # Utiliza popleft() para remover o primeiro elemento da fila
+            return self.fila.popleft()
         else:
-            return None  # Retorna None se a fila estiver vazia
+            return None
         
     def get_all_cobrancas(self) -> Queue:
         return self.fila

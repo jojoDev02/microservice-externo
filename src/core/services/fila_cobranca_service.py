@@ -20,11 +20,12 @@ class FilaCobrancaService(FilaCobrancaInterface):
 
         cobrancas_pagas = []
 
-        for cobranca in self.fila.get_all_cobrancas():
-               
-                cobranca.marcar_como_paga()
-                self.fila.retira_cobranca()
-                cobrancas_pagas.append(cobranca)
+        cobrancas = list(self.fila.get_all_cobrancas())
+        
+        for cobranca in cobrancas:
+            cobranca.marcar_como_paga()
+            self.fila.retira_cobranca()
+            cobrancas_pagas.append(cobranca)
                 
            
         return cobrancas_pagas
