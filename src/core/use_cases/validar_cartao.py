@@ -9,7 +9,10 @@ class ValidarCartaoUseCase:
 
     def execute(self, cartao: CartaoCredito):
             
-            is_valido = self.cartao_validator.validar(cartao)
+            if cartao.valida_formato():
+                is_valido = self.cartao_validator.validar(cartao)
+            else:
+                is_valido = False
 
             return is_valido 
          
