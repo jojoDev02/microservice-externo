@@ -24,6 +24,7 @@ class TestCobrancaEndpoints(unittest.TestCase):
         response = self.app.post('/cobranca', json=data)
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.get_data(as_text=True))
+        self.assertIsNotNone(result)
 
     def test_incluir_cobranca_endpoint(self):
         data = {
@@ -33,18 +34,19 @@ class TestCobrancaEndpoints(unittest.TestCase):
         response = self.app.post('/filaCobranca', json=data)
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.get_data(as_text=True))
+        self.assertIsNotNone(result)
 
     def test_get_cobranca_endpoint_404(self):
         response = self.app.get('/cobranca/b382d7af-337f-4814-bd8b-bd4f8ecfd57b')
         self.assertEqual(response.status_code, 404)
         result = json.loads(response.get_data(as_text=True))
-
+        self.assertIsNotNone(result)
 
     def test_processa_cobrancas_endpoint(self):
         response = self.app.post('/processaCobrancasEmFila')
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.get_data(as_text=True))
-
+        self.assertIsNotNone(result)
 
 if __name__ == '__main__':
     unittest.main()
