@@ -14,7 +14,7 @@ class CartaoCredito:
         if (
             re.match(r"^\d{16}$", self.numero) is not None
             and self.__valida_validade()
-            and re.match(r"^\d{4}$", self.cvv) is not None
+            and re.match(r"^\d{3}$", self.cvv) is not None
         ):
             return True
         else:

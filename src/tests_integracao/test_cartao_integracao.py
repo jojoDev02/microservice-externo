@@ -30,7 +30,7 @@ class TestValidaCartaoIntegration(unittest.TestCase):
         response = self.client.post('/validaCartaoDeCredito', json=dados_cartao)
         print(response.status_code)
         print(response)
-        # Verifica se a resposta está correta
+       
         self.assertEqual(response.status_code, 200)
 
 
@@ -43,14 +43,12 @@ class TestValidaCartaoIntegration(unittest.TestCase):
                 "cvv": "7937"
             }
 
-            # Envia uma requisição POST para a rota com dados inválidos
             response = self.client.post('/validaCartaoDeCredito', json=dados_cartao_invalido)
 
-            # Verifica se a resposta está correta para dados inválidos
             self.assertEqual(response.status_code, 422)
 
-            # Verifica o conteúdo da resposta para dados inválidos
             resultado = response.get_json()
+            self.assertIsNotNone(resultado)
 
 if __name__ == '__main__':
     unittest.main()
