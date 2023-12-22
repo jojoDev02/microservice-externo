@@ -24,7 +24,7 @@ class EmailService(EmailServiceInterface):
 
         # Cria a mensagem de e-mail
         mensagem = MIMEMultipart()
-        mensagem['From'] = 'jordanafcavalcante@gmail.com'
+        mensagem['From'] = 'exemplo@gmail.com'
         mensagem['To'] = email.destinatario
         mensagem['Subject'] = email.assunto
 
